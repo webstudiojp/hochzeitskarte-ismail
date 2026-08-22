@@ -1,7 +1,7 @@
 /* =========================================================
    DIGITALE HOCHZEITSKARTE — INHALTE
    Pro Paar wird ausschliesslich diese Datei angefasst.
-   Demo-Datensatz: Furkan & Dilara, 01.01.2027 (frei erfunden)
+   Datensatz: Ismail & Suna, 21.09.2026
 
    Aufbau: Zuerst die sprachneutralen Angaben (Namen, Termine,
    Adresse, Bankverbindung), danach unter `sprachen` alles,
@@ -11,24 +11,23 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '20260822112205',
+  version: '20260822113941',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
   sprachfolge: ['de', 'tr'],
 
   /* ---------- Das Paar ---------- */
-  /* ACHTUNG - noch von der Kundin zu bestaetigen:
-     Der 21.09.2026 ist ein MONTAG. Samstage im September 2026 sind der
-     5., 12., 19. und 26. (der 12. ist der Standesamtstermin).
-     Ausserdem fehlen noch: Vorname der Braut und beide Nachnamen. */
-  braut:        'BRAUT',            // TODO Vorname der Braut
+  /* Noch offen: beide Nachnamen. */
+  braut:        'Suna',
   braeutigam:   'Ismail',
-  namen:        'Ismail & BRAUT',   // TODO
-  datumKurz:    '21.09.2026',
-  datumISO:     '2026-09-21',
-  beginnISO:    '2026-09-21T16:00:00+02:00',
-  endeISO:      '2026-09-22T00:00:00+02:00',
+  namen:        'Ismail & Suna',
+  datumKurz:    '21.11.2026',
+  datumISO:     '2026-11-21',
+  /* Mit Zeitzonenversatz, sonst rechnen Countdown und Kalendereintrag in
+     der Zeit des Betrachters. +01:00 = Winterzeit (ab Ende Oktober). */
+  beginnISO:    '2026-11-21T16:00:00+01:00',
+  endeISO:      '2026-11-22T00:00:00+01:00',
 
   /* ---------- Hero-Animation ---------- */
   hero: {
@@ -65,7 +64,7 @@ window.HOCHZEIT = {
 
   /* ---------- Geschenke ---------- */
   geschenk: {
-    kontoinhaber: 'Dilara Sarıca',
+    kontoinhaber: 'KONTOINHABER',   // TODO, falls die Geschenke-Karte bleibt
     iban: 'DE89 3704 0044 0532 0130 00',   // Beispiel-IBAN, kein echtes Konto
   },
 
@@ -79,7 +78,7 @@ window.HOCHZEIT = {
   wissen: ['bett', 'auto', 'geschenk'],
 
   /* ---------- Rueckmeldung ---------- */
-  rsvp: { frist_iso: '2026-08-23' },
+  rsvp: { frist_iso: '2026-10-24' },
 
   /* ---------- Galerie ---------- */
   galerie: [
@@ -123,7 +122,7 @@ window.HOCHZEIT = {
       anredeText: 'Am ersten Tag des neuen Jahres geben wir uns das Ja-Wort. '
                 + 'Wir würden uns freuen, wenn ihr dabei seid – zur Trauung, '
                 + 'zum Essen und danach so lange, wie ihr mögt.',
-      anredeGruss: 'Dilara und Furkan',
+      anredeGruss: 'Suna und Ismail',
 
       zitat: 'Ein Tag. Und danach alle anderen.',
       zitatKlein: 'Wir freuen uns darauf, ihn mit euch anzufangen.',
@@ -177,10 +176,10 @@ window.HOCHZEIT = {
 
       galerieTitel: 'Wir zwei',
       bildtexte: {
-        g1: 'Dilara und Furkan zu Hause, sie hält seine Wange',
+        g1: 'Suna und Ismail zu Hause, sie hält seine Wange',
         g2: 'Die beiden abends unter Palmen und Lichterketten',
-        g3: 'Furkan und Dilara am Strand bei Sonnenuntergang',
-        g4: 'Dilara lehnt an Furkans Schulter auf dem Sofa',
+        g3: 'Ismail und Suna am Strand bei Sonnenuntergang',
+        g4: 'Suna lehnt an Ismails Schulter auf dem Sofa',
       },
 
       albumTitel: 'Euer Blick auf den Tag',
@@ -215,7 +214,7 @@ window.HOCHZEIT = {
 
       musikAn: 'Musik ausschalten', musikAus: 'Musik einschalten',
 
-      verantwortlich: 'Verantwortlich für den Inhalt: Dilara Sarıca und Furkan Zarga · hallo@dilara-und-furkan.de',
+      verantwortlich: 'Verantwortlich für den Inhalt: Suna und Ismail NACHNAME · E-MAIL',   // TODO
       datenschutz: 'Diese Seite setzt keine Cookies und lädt weder Schriften noch Karten von fremden Servern. '
                  + 'Der Google-Kalender-Knopf öffnet erst nach eurem Klick eine Seite von Google.',
       demoHinweis: 'Demo-Karte von JP Webstudio, gehostet auf GitHub Pages. Paar, Termin und Bankverbindung sind erfunden.',
@@ -243,7 +242,7 @@ window.HOCHZEIT = {
       anredeText: 'Yeni yılın ilk gününde hayatımızı birleştiriyoruz. '
                 + 'Bu özel günümüzde sizi de aramızda görmekten mutluluk duyarız – '
                 + 'nikâhta, yemekte ve sonrasında dilediğiniz kadar.',
-      anredeGruss: 'Dilara ve Furkan',
+      anredeGruss: 'Suna ve Ismail',
 
       zitat: 'Bir gün. Ve ardından bütün diğerleri.',
       zitatKlein: 'Bu güne sizinle başlamak bizi mutlu edecek.',
@@ -297,10 +296,10 @@ window.HOCHZEIT = {
 
       galerieTitel: 'Biz ikimiz',
       bildtexte: {
-        g1: 'Dilara ve Furkan evde, Dilara elini yanağına koymuş',
+        g1: 'Suna ve Ismail evde, Suna elini yanağına koymuş',
         g2: 'İkisi akşam, palmiyeler ve ışıklar altında',
-        g3: 'Furkan ve Dilara gün batımında sahilde',
-        g4: 'Dilara başını Furkan’ın omzuna yaslamış',
+        g3: 'Ismail ve Suna gün batımında sahilde',
+        g4: 'Suna başını Ismail’ın omzuna yaslamış',
       },
 
       albumTitel: 'Anı albümü',
@@ -335,7 +334,7 @@ window.HOCHZEIT = {
 
       musikAn: 'Müziği kapat', musikAus: 'Müziği aç',
 
-      verantwortlich: 'İçerik sorumlusu: Dilara Sarıca ve Furkan Zarga · hallo@dilara-und-furkan.de',
+      verantwortlich: 'İçerik sorumlusu: Suna Sarıca ve Ismail Zarga · hallo@dilara-und-furkan.de',
       datenschutz: 'Bu sayfa çerez kullanmaz, yazı tiplerini ve haritaları başka sunuculardan yüklemez. '
                  + 'Google Takvim düğmesi yalnızca siz dokununca bir Google sayfası açar.',
       demoHinweis: 'JP Webstudio demo davetiyesi, GitHub Pages üzerinde. Çift, tarih ve banka bilgisi kurgudur.',

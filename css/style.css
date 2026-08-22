@@ -200,36 +200,3 @@ body.locked{overflow:hidden}
   .hero-caption.show{transform:translateX(-50%)}
 }
 
-/* ---------- Schmetterlinge ueber der Fahrbahn ----------
-   Zwoelf Fluegelphasen als Streifen, Bild fuer Bild aus einem Video
-   freigestellt. Zwei Schrittanimationen fahren ihn ab - waagerecht
-   durch die sechs Spalten, senkrecht durch die zwei Zeilen im halben
-   Takt. Die Flugbahn liegt auf dem Elternelement, damit sie sich nicht
-   mit dem Fluegelschlag ins Gehege kommt. */
-.falterfeld{
-  position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:6;
-}
-.falter{
-  position:absolute;bottom:-14%;display:block;
-  will-change:transform;
-}
-.falterfeld.an .falter{
-  animation:falter-zug var(--steig,3s) cubic-bezier(.34,.16,.5,1) forwards;
-}
-.falter-bild{
-  display:block;width:100%;aspect-ratio:1;
-  background-image:url("../assets/img/falter.webp");
-  background-repeat:no-repeat;
-  background-size:600% 200%;                 /* 6 Spalten, 2 Zeilen */
-  animation:
-    fluegel-quer var(--schlag,.5s) steps(6,end) infinite,
-    fluegel-zeile calc(var(--schlag,.5s) * 2) steps(2,end) infinite;
-}
-@keyframes fluegel-quer {from{background-position-x:0%} to{background-position-x:120%}}
-@keyframes fluegel-zeile{from{background-position-y:0%} to{background-position-y:200%}}
-@keyframes falter-zug{
-  from{transform:translate3d(0,0,0) rotate(-4deg);opacity:0}
-  12% {opacity:1}
-  to  {transform:translate3d(var(--drift,0),calc(-1 * var(--hoch,120vh)),0) rotate(6deg);opacity:0}
-}
-@media (prefers-reduced-motion:reduce){ .falterfeld{display:none} }

@@ -62,6 +62,49 @@
      Im Vorbild sind es winzige Silhouetten weit hinten. Genau deshalb
      wirken sie natürlich: man sieht keine Details, nur Bewegung.
      ========================================================= */
+  /* =========================================================
+     Schmetterlinge ueber der Einladung
+
+     Blaue Morphofalter in Aufsicht, wie auf der Vorlage der Kundin.
+     Der Fluegelschlag kommt aus einem Streifen mit zwoelf Phasen, die
+     Bild fuer Bild aus einem Video freigestellt wurden - hin und zurueck
+     gelegt, damit der Zyklus ohne Sprung schliesst. Jeder Falter bekommt
+     eigene Bahn, Groesse und Taktzeit; kleinere stehen weiter hinten,
+     sind blasser und schweben ruhiger.
+     ========================================================= */
+  (function falter() {
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const feld = $('falterfeld');
+    if (!feld) return;
+    let z = 20261121;
+    const r = () => (z = (z * 1103515245 + 12345) % 2147483648) / 2147483648;
+    const anzahl = innerWidth < 700 ? 6 : 9;
+
+    for (let i = 0; i < anzahl; i++) {
+      const nah = r();                       // 0 = weit weg, 1 = nah
+      const gr = 26 + nah * 54;
+      const f = document.createElement('span');
+      f.className = 'falter';
+      f.setAttribute('aria-hidden', 'true');
+      f.style.cssText =
+        'left:' + (3 + r() * 90).toFixed(1) + '%;' +
+        'width:' + gr.toFixed(0) + 'px;' +
+        '--deck:' + (0.45 + nah * 0.5).toFixed(2) + ';' +
+        '--drift:' + ((r() * 2 - 1) * 13).toFixed(1) + 'vw;' +
+        '--hoch:' + (118 + r() * 40).toFixed(0) + 'vh;' +
+        '--zug:' + (17 + r() * 16).toFixed(1) + 's;' +
+        // Kleine Falter schlagen schneller - so entsteht Tiefe
+        '--schlag:' + (0.62 + nah * 0.5).toFixed(2) + 's;' +
+        'animation-delay:-' + (r() * 26).toFixed(1) + 's;';
+      const b = document.createElement('i');
+      b.className = 'falter-bild';
+      b.style.animationDelay = '-' + (r() * 3).toFixed(2) + 's, -' +
+        (r() * 3).toFixed(2) + 's, -' + (r() * 4).toFixed(2) + 's';
+      f.appendChild(b);
+      feld.appendChild(f);
+    }
+  })();
+
   (function voegel() {
     if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     const feld = $('tauben');
