@@ -11,12 +11,12 @@ Stand der Karte und was noch von der Kundin gebraucht wird.
 | Zeit | 16:00 bis 24:00 Uhr |
 | Ort | Ceremony Eventlocation, An der Knippenburg 115, 46238 Bottrop |
 | Eltern | Dürdane und Mehmet Mustafa Bozhüyük · Hasret und der verstorbene Süleyman Çikin |
-| Trauzeugen | Annemaria, Küşat |
+| Trauzeugen | Annemaria Amedahevi, Küşat |
 | Fahrbahnschrift | biz evleniyoruz |
 
 ## Offen — hier stehen noch Platzhalter
 
-1. **Nachnamen der Trauzeugen** — Annemaria und Küşat stehen bisher ohne.
+1. **Nachname von Küşat** — Annemaria Amedahevi steht vollständig, bei Küşat fehlt er noch.
 2. **Fotos** — die Galerie zeigt vier Platzhalter-Kacheln. Sobald die Bilder
    da sind: nach `assets/img/` legen und in `js/config.js` unter `galerie`
    eintragen (`{ datei: 'assets/img/…', schluessel: 'g1' }`).

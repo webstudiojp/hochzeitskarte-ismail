@@ -11,7 +11,7 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '20260822121241',
+  version: '20260822122945',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
@@ -66,7 +66,7 @@ window.HOCHZEIT = {
     { schluessel: 'brautseite',
       namen:    ['Hasret und der verstorbene Süleyman Çikin'],
       namen_tr: ['Hasret ve merhum Süleyman Çikin'] },
-    { schluessel: 'trauzeugen',      namen: ['Annemaria', 'Küşat'] },   // TODO Nachnamen
+    { schluessel: 'trauzeugen',      namen: ['Annemaria Amedahevi', 'Küşat'] },   // TODO Nachname Küşat
   ],
 
   /* ---------- Geschenke ---------- */
@@ -114,7 +114,7 @@ window.HOCHZEIT = {
     /* ------------------------- DEUTSCH ------------------------- */
     de: {
       name: 'Deutsch', kuerzel: 'DE', htmlLang: 'de',
-      datumLang: 'Freitag, 1. Januar 2027',
+      datumLang: 'Samstag, 21. November 2026',
       monate: ['Januar','Februar','März','April','Mai','Juni','Juli','August','September','Oktober','November','Dezember'],
       wochentage: ['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
 
@@ -148,8 +148,7 @@ window.HOCHZEIT = {
       wissenTitel: 'Gut zu wissen',
       wissen: {
         bett: { titel: 'Übernachtung',
-                text: 'Im Hotel am Schlosspark ist bis zum 1. November ein Kontingent '
-                    + 'auf unseren Namen reserviert. Zu Fuß sind es zehn Minuten.' },
+                text: '' },
         auto: { titel: 'Anreise und Parken',
                 text: 'Am Westflügel gibt es Parkplätze, die reichen erfahrungsgemäß. '
                     + 'Der Taxistand liegt direkt am Parkeingang.' },
@@ -183,8 +182,7 @@ window.HOCHZEIT = {
 
       dresscodeTitel: 'Dresscode',
       dresscodeKopf: 'Festlich, gerne lang',
-      dresscodeText: 'Die Trauung ist draußen in der Orangerie – flache Absätze sind auf dem Kiesweg '
-                   + 'die klügere Wahl. Weiß bleibt der Braut vorbehalten.',
+      dresscodeText: '',
       farbnamen: { salbei: 'Salbei', nuss: 'Nussbraun', rauchblau: 'Rauchblau', altgold: 'Altgold' },
 
       galerieTitel: 'Wir zwei',
@@ -205,7 +203,7 @@ window.HOCHZEIT = {
 
       geschenkTitel: 'Geschenke',
       geschenkText: 'Ihr müsst nichts mitbringen. Wer uns trotzdem etwas schenken möchte: '
-                  + 'Wir sparen auf die Hochzeitsreise nach Kappadokien.',
+                  + '[Text folgt, falls dieser Abschnitt zurueckkommt]',
       kopieren: 'Kopieren', kopiert: 'Kopiert', kopierenHand: 'Bitte von Hand kopieren',
 
       rsvpTitel: 'Sagt ihr uns Bescheid?',
@@ -237,7 +235,7 @@ window.HOCHZEIT = {
     /* ------------------------- TÜRKISCH ------------------------- */
     tr: {
       name: 'Türkçe', kuerzel: 'TR', htmlLang: 'tr',
-      datumLang: '1 Ocak 2027 Cuma',
+      datumLang: '21 Kasım 2026 Cumartesi',
       monate: ['Ocak','Şubat','Mart','Nisan','Mayıs','Haziran','Temmuz','Ağustos','Eylül','Ekim','Kasım','Aralık'],
       wochentage: ['Pazar','Pazartesi','Salı','Çarşamba','Perşembe','Cuma','Cumartesi'],
 
@@ -293,7 +291,7 @@ window.HOCHZEIT = {
 
       ortTitel: 'Konum',
       ortName: 'Ceremony Eventlocation',
-      ortBildAlt: 'Orangerie önünde çiçekli kemer, arkasında nikâh için sandalye sıraları',
+      ortBildAlt: 'Bottrop’daki Ceremony Eventlocation',
       ortHinweis: '',
       routeGoogle: 'Google Haritalar ile yol tarifi',
       routeApple:  'Apple Haritalar',
@@ -304,8 +302,7 @@ window.HOCHZEIT = {
 
       dresscodeTitel: 'Kıyafet',
       dresscodeKopf: 'Şık, tercihen uzun',
-      dresscodeText: 'Nikâh Orangerie’nin bahçesinde yapılacak – çakıl yolda alçak topuk daha rahat olur. '
-                   + 'Beyaz rengi geline bırakalım.',
+      dresscodeText: '',
       farbnamen: { salbei: 'Adaçayı', nuss: 'Kahve', rauchblau: 'Duman mavisi', altgold: 'Eski altın' },
 
       galerieTitel: 'Biz ikimiz',
