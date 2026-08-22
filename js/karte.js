@@ -199,7 +199,7 @@
       zl.appendChild(li);
     });
 
-    // Gut zu wissen
+    // Gut zu wissen - ebenfalls entfernt, siehe oben
     setzen('wissen-titel', S.wissenTitel);
     const wl = $('wissen-liste');
     if (wl) {
@@ -243,20 +243,23 @@
       fam.appendChild(div);
     });
 
-    // Dresscode
-    setzen('dresscode-titel', S.dresscodeTitel);
-    setzen('dc-titel', S.dresscodeKopf);
-    setzen('dc-text', S.dresscodeText);
+    // Dresscode - dieses Paar wuenscht keinen, der Abschnitt ist entfernt.
+    // Der Aufbau haelt das aus, falls er spaeter zurueckkommt.
     const dcf = $('dc-farben');
-    dcf.innerHTML = '';
-    C.farben.forEach(f => {
-      const li = el('li', 'dc-farbe');
-      const feld = el('span', 'dc-feld');
-      feld.style.background = f.hex;
-      li.appendChild(feld);
-      li.appendChild(el('span', 'dc-name', S.farbnamen[f.schluessel]));
-      dcf.appendChild(li);
-    });
+    if (dcf) {
+      setzen('dresscode-titel', S.dresscodeTitel);
+      setzen('dc-titel', S.dresscodeKopf);
+      setzen('dc-text', S.dresscodeText);
+      dcf.innerHTML = '';
+      C.farben.forEach(f => {
+        const li = el('li', 'dc-farbe');
+        const feld = el('span', 'dc-feld');
+        feld.style.background = f.hex;
+        li.appendChild(feld);
+        li.appendChild(el('span', 'dc-name', S.farbnamen[f.schluessel]));
+        dcf.appendChild(li);
+      });
+    }
 
     // Galerie
     setzen('galerie-titel', S.galerieTitel);

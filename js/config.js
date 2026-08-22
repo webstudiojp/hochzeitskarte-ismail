@@ -11,24 +11,28 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '20260820224113',
+  version: '20260822112205',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
   sprachfolge: ['de', 'tr'],
 
   /* ---------- Das Paar ---------- */
-  braut:        'Dilara',
-  braeutigam:   'Furkan',
-  namen:        'Furkan & Dilara',
-  datumKurz:    '01.01.2027',
-  datumISO:     '2027-01-01',
-  beginnISO:    '2027-01-01T14:30:00',
-  endeISO:      '2027-01-02T02:00:00',
+  /* ACHTUNG - noch von der Kundin zu bestaetigen:
+     Der 21.09.2026 ist ein MONTAG. Samstage im September 2026 sind der
+     5., 12., 19. und 26. (der 12. ist der Standesamtstermin).
+     Ausserdem fehlen noch: Vorname der Braut und beide Nachnamen. */
+  braut:        'BRAUT',            // TODO Vorname der Braut
+  braeutigam:   'Ismail',
+  namen:        'Ismail & BRAUT',   // TODO
+  datumKurz:    '21.09.2026',
+  datumISO:     '2026-09-21',
+  beginnISO:    '2026-09-21T16:00:00+02:00',
+  endeISO:      '2026-09-22T00:00:00+02:00',
 
   /* ---------- Hero-Animation ---------- */
   hero: {
-    schriftzug:   '',              // leer => nutzt `namen`
+    schriftzug:   'biz evleniyoruz',   // steht als Blumenspur auf der Fahrbahn
     ausrichtung:  'strasse',       // 'strasse' = Spur des Wagens laengs der Fahrbahn
     trenner:      'herz',          // 'herz' | 'zeichen'
     herzZeigen:   true,
@@ -54,9 +58,9 @@ window.HOCHZEIT = {
 
   /* ---------- Familien (Namen sind sprachneutral) ---------- */
   familien: [
-    { schluessel: 'brautseite',      namen: ['Nilüfer und Hamdi Sarıca'] },
-    { schluessel: 'braeutigamseite', namen: ['Oya und Etem Zarga'] },
-    { schluessel: 'trauzeugen',      namen: ['Elif Sarıca', 'Mehmet Zarga'] },
+    { schluessel: 'brautseite',      namen: ['ELTERN DER BRAUT'] },        // TODO
+    { schluessel: 'braeutigamseite', namen: ['ELTERN DES BRAEUTIGAMS'] },  // TODO
+    { schluessel: 'trauzeugen',      namen: ['Annemaria', 'Küsat'] },      // TODO Nachnamen
   ],
 
   /* ---------- Geschenke ---------- */
@@ -68,14 +72,14 @@ window.HOCHZEIT = {
   /* ---------- Ablauf: Uhrzeit und Symbol, sprachneutral ----------
      Reihenfolge wie unter sprachen.*.ablauf. Symbole:
      ringe · glaeser · besteck · tanz · torte · mond            */
-  zeiten:  ['14:30', '15:30', '17:00', '19:30', '20:00', '02:00'],
+  zeiten:  ['16:00', '17:00', '18:30', '20:30', '21:30', '00:00'],
   symbole: ['ringe', 'glaeser', 'besteck', 'tanz', 'torte', 'mond'],
 
   /* ---------- Gut zu wissen ---------- */
   wissen: ['bett', 'auto', 'geschenk'],
 
   /* ---------- Rueckmeldung ---------- */
-  rsvp: { frist_iso: '2026-11-01' },
+  rsvp: { frist_iso: '2026-08-23' },
 
   /* ---------- Galerie ---------- */
   galerie: [

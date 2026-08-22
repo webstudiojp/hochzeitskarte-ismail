@@ -263,25 +263,40 @@
     }
   }
 
-  // Zum Schluss treibt der Fahrtwind den ganzen Weg voller Blueten
-  function bluetensturm(fertig) {
+  /* Wenn der Wagen durch ist, ziehen Schmetterlinge ueber die Fahrbahn.
+     Der Fluegelschlag kommt aus einem Streifen mit zwoelf Phasen, die
+     Bild fuer Bild aus einem Video freigestellt wurden - deshalb schlaegt
+     der Fluegel wirklich durch, statt zwischen zwei Stellungen zu
+     blinken. Jeder Falter bekommt eigene Bahn, Groesse und Taktzeit. */
+  function schmetterlingsflug(fertig) {
     if (reduced) { fertig(); return; }
-    const t0 = performance.now(), DAUER = T(1500);
-    let letzte = 0;
-    (function welle(now) {
-      const t = now - t0;
-      if (now - letzte > 16) {
-        letzte = now;
-        const dichte = t < DAUER * 0.45 ? 6 : 3;
-        for (let i = 0; i < dichte; i++) {
-          const x = rnd() * 1000;
-          const y = 200 + rnd() * 1500;
-          blueteStreuen(x, y - 300 * 1.1, 1.1 + rnd() * 0.9, 1.6);
-        }
-      }
-      if (t < DAUER) requestAnimationFrame(welle);
-      else fertig();
-    })(performance.now());
+    const feld = $('falterfeld');
+    if (!feld) { fertig(); return; }
+    const ANZAHL = window.innerWidth < 700 ? 7 : 11;
+    const DAUER = T(2600);
+
+    for (let i = 0; i < ANZAHL; i++) {
+      const f = document.createElement('span');
+      f.className = 'falter';
+      const gr = 26 + rnd() * 46;                 // ferne klein, nahe gross
+      const vonX = 8 + rnd() * 84;                // Start quer ueber die Bahn
+      const drift = (rnd() - 0.5) * 46;           // wohin er zieht
+      f.style.cssText =
+        'left:' + vonX.toFixed(1) + '%;' +
+        'width:' + gr.toFixed(0) + 'px;' +
+        'opacity:' + (0.62 + rnd() * 0.38).toFixed(2) + ';' +
+        '--drift:' + drift.toFixed(1) + 'vw;' +
+        '--hoch:' + (108 + rnd() * 46).toFixed(0) + 'vh;' +
+        '--schlag:' + (0.42 + rnd() * 0.3).toFixed(2) + 's;' +
+        '--steig:' + (2.1 + rnd() * 2.4).toFixed(2) + 's;' +
+        'animation-delay:' + (rnd() * 1.15).toFixed(2) + 's;';
+      const b = document.createElement('i');
+      b.className = 'falter-bild';
+      f.appendChild(b);
+      feld.appendChild(f);
+    }
+    feld.classList.add('an');
+    setTimeout(fertig, DAUER);
   }
 
   function endzustand() {
@@ -348,7 +363,7 @@
         Math.min(1, Math.max(0, (1408 - heck) / 130)).toFixed(2));
 
       if (t < ENDE) requestAnimationFrame(frame);
-      else if (!sturmLaeuft) { sturmLaeuft = true; bluetensturm(endzustand); }
+      else if (!sturmLaeuft) { sturmLaeuft = true; schmetterlingsflug(endzustand); }
     }
     requestAnimationFrame(frame);
   }
