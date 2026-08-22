@@ -996,3 +996,14 @@ body.hell-oben .sprachwahl,body.hell-oben .musikknopf{
   to  {transform:translate3d(var(--drift,4vw),calc(-1 * var(--hoch,130vh)),0);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){ .falterfeld{display:none} }
+
+/* ---------- Galerie: Platzhalter, solange die Fotos fehlen ---------- */
+.gal-bild.gal-leer{
+  display:grid;place-items:center;
+  background:
+    repeating-linear-gradient(135deg, #efe9dc 0 12px, #ece5d6 12px 24px);
+  border:1px solid #e0d8c6;
+  cursor:default;
+}
+.gal-leer-zeichen{display:block;width:clamp(30px,7vw,44px);color:#b8ac93}
+.gal-leer-zeichen svg{width:100%;height:auto;display:block}

@@ -206,8 +206,7 @@
     setzen('d-jahr', d.getFullYear());
     setzen('d-wochentag', S.wochentage[d.getDay()]);
     setzen('merken-text', S.merken);
-    setzen('btn-kalender-text', S.kalenderApple);
-    setzen('btn-google-cal-text', S.kalenderGoogle);
+    setzen('btn-kalender-text', S.kalenderKnopf);
 
     // Anrede
     setzen('a-text', S.anredeText);
@@ -315,13 +314,27 @@
     C.galerie.slice(0, 4).forEach((b, i) => {
       const fig = el('figure', 'gal-bild rv' + sichtbar);
       fig.dataset.rv = String(i + 1);
-      const img = document.createElement('img');
-      img.src = mitVersion(b.datei);
-      img.alt = S.bildtexte[b.schluessel] || '';
-      img.loading = i === 0 ? 'eager' : 'lazy';
-      img.decoding = 'async';
-      img.dataset.px = '6';
-      fig.appendChild(img);
+      if (b.platzhalter || !b.datei) {
+        // Solange die eigenen Fotos fehlen: eine ruhige Flaeche statt
+        // fremder Bilder. Sobald die Dateien da sind, faellt das hier weg.
+        fig.classList.add('gal-leer');
+        const p = el('span', 'gal-leer-zeichen');
+        p.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true">'
+          + '<path d="M4 17.5V6.5a1.5 1.5 0 0 1 1.5-1.5h13A1.5 1.5 0 0 1 20 6.5v11a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 17.5Z" '
+          + 'fill="none" stroke="currentColor" stroke-width="1.2"/>'
+          + '<path d="m4.6 15.4 3.9-3.6 3 2.7 3.4-3.6 4.5 4.4" fill="none" stroke="currentColor" stroke-width="1.2" '
+          + 'stroke-linecap="round" stroke-linejoin="round"/>'
+          + '<circle cx="9.2" cy="9" r="1.3" fill="currentColor"/></svg>';
+        fig.appendChild(p);
+      } else {
+        const img = document.createElement('img');
+        img.src = mitVersion(b.datei);
+        img.alt = S.bildtexte[b.schluessel] || '';
+        img.loading = i === 0 ? 'eager' : 'lazy';
+        img.decoding = 'async';
+        img.dataset.px = '6';
+        fig.appendChild(img);
+      }
       gal.appendChild(fig);
     });
 
@@ -338,23 +351,26 @@
     setzen('g-iban', C.geschenk.iban);
     setzen('btn-iban', S.kopieren);
 
-    // Rueckmeldung
-    setzen('rsvp-titel', S.rsvpTitel);
-    setzen('r-hinweis', S.rsvpHinweis(fristText));
-    setzen('l-name', S.fName);
-    $('f-name').placeholder = S.fNamePlatz;
-    setzen('e-name', S.fNameFehler);
-    setzen('l-kommt', S.fKommt);
-    setzen('l-ja', S.fJa);
-    setzen('l-nein', S.fNein);
-    setzen('e-zusage', S.fZusageFehler);
-    setzen('l-anzahl', S.fAnzahl);
-    setzen('l-gruss', S.fGruss);
-    $('f-gruss').placeholder = S.fGrussPlatz;
-    document.querySelectorAll('.feld-optional').forEach(n => { n.textContent = S.fOptional; });
-    setzen('l-einwilligung', S.fEinwilligung);
-    setzen('e-dsgvo', S.fDsgvoFehler);
-    setzen('btn-senden', S.fSenden);
+    // Rueckmeldung, Album und Geschenke sind bei diesem Paar nicht dabei.
+    // Der Aufbau haelt das aus, falls sie spaeter dazukommen.
+    if ($('rsvp-form')) {
+      setzen('rsvp-titel', S.rsvpTitel);
+      setzen('r-hinweis', S.rsvpHinweis(fristText));
+      setzen('l-name', S.fName);
+      $('f-name').placeholder = S.fNamePlatz;
+      setzen('e-name', S.fNameFehler);
+      setzen('l-kommt', S.fKommt);
+      setzen('l-ja', S.fJa);
+      setzen('l-nein', S.fNein);
+      setzen('e-zusage', S.fZusageFehler);
+      setzen('l-anzahl', S.fAnzahl);
+      setzen('l-gruss', S.fGruss);
+      $('f-gruss').placeholder = S.fGrussPlatz;
+      document.querySelectorAll('.feld-optional').forEach(n => { n.textContent = S.fOptional; });
+      setzen('l-einwilligung', S.fEinwilligung);
+      setzen('e-dsgvo', S.fDsgvoFehler);
+      setzen('btn-senden', S.fSenden);
+    }
 
     // Fuss
     setzen('f-namen', C.namen);
@@ -368,10 +384,6 @@
     const ziel = encodeURIComponent(adresse);
     $('btn-google').href = 'https://www.google.com/maps/dir/?api=1&destination=' + ziel;
     $('btn-apple').href  = 'https://maps.apple.com/?daddr=' + ziel + '&dirflg=d';
-    $('btn-google-cal').href = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
-      + '&text=' + encodeURIComponent(S.seitentitel(C.namen).split(' — ')[0] + ' · ' + S.heroZeile)
-      + '&dates=' + C.beginnISO.replace(/[-:]/g, '') + '/' + C.endeISO.replace(/[-:]/g, '')
-      + '&location=' + ziel;
 
     // Sprachumschalter: aktive Flagge farbig, die andere zurueckgenommen
     document.querySelectorAll('.flagge').forEach(f => {
@@ -419,111 +431,147 @@
   }
 
   /* =========================================================
-     6. Kalenderdatei — komplett im Browser erzeugt
+     6. Kalenderdatei - ein Knopf fuer alle Geraete
+
+     Die .ics-Datei ist das einzige Kalenderformat, das iPhone, Android
+     und Rechner gleichermassen verstehen. Sie entsteht hier im Browser;
+     nichts wird an einen Dienst geschickt.
+
+     Nur der Weg zur Datei unterscheidet sich: Safari auf dem iPhone
+     verschluckt Downloads mit download-Attribut und legt sie bestenfalls
+     in "Dateien" ab. Ohne das Attribut oeffnet dieselbe Datei direkt den
+     Kalender. Auf allen anderen Geraeten ist es umgekehrt.
      ========================================================= */
-  const icsZeit = iso => iso.replace(/[-:]/g, '').replace(/\.\d+/, '');
-  $('btn-kalender').addEventListener('click', () => {
+  const icsZeit = iso => new Date(iso).toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
+
+  function kalenderDatei() {
     const adresse = S.ortName + ', ' + C.ort.strasse + ', ' + C.ort.plz + ' ' + C.ort.stadt;
-    const ics = [
+    const falte = z => String(z).replace(/([,;\\])/g, '\\$1');
+    return [
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//JP Webstudio//Hochzeitskarte//DE',
-      'CALSCALE:GREGORIAN', 'BEGIN:VEVENT',
+      'CALSCALE:GREGORIAN', 'METHOD:PUBLISH', 'BEGIN:VEVENT',
       'UID:' + C.datumISO + '-' + C.braut.toLowerCase() + '-' + C.braeutigam.toLowerCase() + '@einladung',
-      'DTSTAMP:' + icsZeit(new Date().toISOString()).replace(/\.\d+Z$/, 'Z'),
+      'DTSTAMP:' + icsZeit(new Date().toISOString()),
       'DTSTART:' + icsZeit(C.beginnISO),
       'DTEND:'   + icsZeit(C.endeISO),
-      'SUMMARY:' + C.namen + ' · ' + S.heroZeile,
-      'LOCATION:' + adresse.replace(/,/g, '\\,'),
+      'SUMMARY:' + falte(C.namen + ' \u00b7 ' + S.heroZeile),
+      'LOCATION:' + falte(adresse),
+      'DESCRIPTION:' + falte(S.kalenderNotiz(location.href.split('#')[0])),
+      'URL:' + location.href.split('#')[0],
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY',
+      'DESCRIPTION:' + falte(C.namen), 'END:VALARM',
       'END:VEVENT', 'END:VCALENDAR',
     ].join('\r\n');
-    const url = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
+  }
+
+  const btnKal = $('btn-kalender');
+  if (btnKal) btnKal.addEventListener('click', () => {
+    const url = URL.createObjectURL(new Blob([kalenderDatei()], { type: 'text/calendar;charset=utf-8' }));
+    const apple = /iPad|iPhone|iPod/.test(navigator.userAgent)
+      || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
     const a = document.createElement('a');
     a.href = url;
-    a.download = C.braeutigam + '-' + C.braut + '.ics';
+    if (!apple) a.download = C.braeutigam + '-' + C.braut + '.ics';
+    else a.target = '_blank';
+    a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+
+    const t = $('btn-kalender-text');
+    if (t) {
+      const vorher = t.textContent;
+      t.textContent = S.kalenderFertig;
+      setTimeout(() => { t.textContent = vorher; }, 2600);
+    }
   });
 
   /* =========================================================
      7. IBAN kopieren
      ========================================================= */
-  const btnIban = $('btn-iban');
-  btnIban.addEventListener('click', async () => {
-    const rein = C.geschenk.iban.replace(/\s+/g, '');
-    try {
-      await navigator.clipboard.writeText(rein);
-      btnIban.textContent = S.kopiert;
-    } catch {
-      const t = document.createElement('textarea');
-      t.value = rein; document.body.appendChild(t); t.select();
-      btnIban.textContent = document.execCommand('copy') ? S.kopiert : S.kopierenHand;
-      t.remove();
-    }
-    setTimeout(() => { btnIban.textContent = S.kopieren; }, 2400);
-  });
+  if ($('btn-iban')) {
+    const btnIban = $('btn-iban');
+    btnIban.addEventListener('click', async () => {
+      const rein = C.geschenk.iban.replace(/\s+/g, '');
+      try {
+        await navigator.clipboard.writeText(rein);
+        btnIban.textContent = S.kopiert;
+      } catch {
+        const t = document.createElement('textarea');
+        t.value = rein; document.body.appendChild(t); t.select();
+        btnIban.textContent = document.execCommand('copy') ? S.kopiert : S.kopierenHand;
+        t.remove();
+      }
+      setTimeout(() => { btnIban.textContent = S.kopieren; }, 2400);
+    });
+  }
 
   /* =========================================================
      8. Album — Auswahl funktioniert, Ablage braucht den Server
      ========================================================= */
-  const eingabe = $('upload-input'), liste = $('upload-liste'), uHinweis = $('upload-hinweis');
-  const groesse = b => b < 1048576 ? Math.round(b / 1024) + ' KB'
-                                   : (b / 1048576).toFixed(1).replace('.', ',') + ' MB';
-  eingabe.addEventListener('change', () => {
-    const dateien = [...eingabe.files];
-    liste.innerHTML = '';
-    liste.hidden = dateien.length === 0;
-    dateien.forEach(d => {
-      const li = document.createElement('li');
-      li.appendChild(el('span', null, d.name));
-      li.appendChild(el('span', 'upload-groesse', groesse(d.size)));
-      liste.appendChild(li);
+  if ($('upload-input')) {
+    const eingabe = $('upload-input'), liste = $('upload-liste'), uHinweis = $('upload-hinweis');
+    const groesse = b => b < 1048576 ? Math.round(b / 1024) + ' KB'
+                                     : (b / 1048576).toFixed(1).replace('.', ',') + ' MB';
+    eingabe.addEventListener('change', () => {
+      const dateien = [...eingabe.files];
+      liste.innerHTML = '';
+      liste.hidden = dateien.length === 0;
+      dateien.forEach(d => {
+        const li = document.createElement('li');
+        li.appendChild(el('span', null, d.name));
+        li.appendChild(el('span', 'upload-groesse', groesse(d.size)));
+        liste.appendChild(li);
+      });
+      if (dateien.length) {
+        uHinweis.hidden = false;
+        uHinweis.textContent = dateien.length === 1 ? S.albumEine : S.albumMehrere(dateien.length);
+      }
     });
-    if (dateien.length) {
-      uHinweis.hidden = false;
-      uHinweis.textContent = dateien.length === 1 ? S.albumEine : S.albumMehrere(dateien.length);
-    }
-  });
+  }
 
   /* =========================================================
      9. Rueckmeldung — Prüfung läuft, Versand braucht den Server
      ========================================================= */
-  const form = $('rsvp-form'), rHinweis = $('rsvp-hinweis');
-  // Zwei Knoepfe statt Auswahlfeldern: eindeutiger und einfacher zu treffen.
-  // Der Wert landet in einem verborgenen Feld, damit das Formular
-  // unveraendert funktioniert.
-  [$('btn-ja'), $('btn-nein')].forEach(k => {
-    k.addEventListener('click', () => {
-      const wert = k.dataset.wert;
-      $('f-zusage').value = wert;
-      [$('btn-ja'), $('btn-nein')].forEach(x => {
-        const an = x === k;
-        x.classList.toggle('gewaehlt', an);
-        x.setAttribute('aria-checked', an ? 'true' : 'false');
+  if ($('rsvp-form')) {
+    const form = $('rsvp-form'), rHinweis = $('rsvp-hinweis');
+    // Zwei Knoepfe statt Auswahlfeldern: eindeutiger und einfacher zu treffen.
+    // Der Wert landet in einem verborgenen Feld, damit das Formular
+    // unveraendert funktioniert.
+    [$('btn-ja'), $('btn-nein')].forEach(k => {
+      k.addEventListener('click', () => {
+        const wert = k.dataset.wert;
+        $('f-zusage').value = wert;
+        [$('btn-ja'), $('btn-nein')].forEach(x => {
+          const an = x === k;
+          x.classList.toggle('gewaehlt', an);
+          x.setAttribute('aria-checked', an ? 'true' : 'false');
+        });
+        $('feld-anzahl').style.display = wert === 'ja' ? '' : 'none';
+        $('e-zusage').hidden = true;
       });
-      $('feld-anzahl').style.display = wert === 'ja' ? '' : 'none';
-      $('e-zusage').hidden = true;
     });
-  });
-  const fehler = (id, feld, an) => {
-    $(id).hidden = !an;
-    if (feld) feld.setAttribute('aria-invalid', an ? 'true' : 'false');
-  };
-  form.addEventListener('submit', e => {
-    e.preventDefault();
-    const name = $('f-name');
-    const zusage = $('f-zusage').value ? { value: $('f-zusage').value } : null;
-    const dsgvo = $('f-dsgvo');
-    const fehltName = name.value.trim().length < 2;
-    fehler('e-name', name, fehltName);
-    fehler('e-zusage', null, !zusage);
-    fehler('e-dsgvo', null, !dsgvo.checked);
-    const erstes = fehltName ? name : (!zusage ? $('btn-ja')
-                                               : (!dsgvo.checked ? dsgvo : null));
-    if (erstes) { erstes.focus(); return; }
-    rHinweis.hidden = false;
-    rHinweis.textContent = zusage.value === 'ja' ? S.rsvpJa : S.rsvpNein;
-    rHinweis.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    if (zusage.value === 'ja') bluetenregen();
-  });
+    const fehler = (id, feld, an) => {
+      $(id).hidden = !an;
+      if (feld) feld.setAttribute('aria-invalid', an ? 'true' : 'false');
+    };
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      const name = $('f-name');
+      const zusage = $('f-zusage').value ? { value: $('f-zusage').value } : null;
+      const dsgvo = $('f-dsgvo');
+      const fehltName = name.value.trim().length < 2;
+      fehler('e-name', name, fehltName);
+      fehler('e-zusage', null, !zusage);
+      fehler('e-dsgvo', null, !dsgvo.checked);
+      const erstes = fehltName ? name : (!zusage ? $('btn-ja')
+                                                 : (!dsgvo.checked ? dsgvo : null));
+      if (erstes) { erstes.focus(); return; }
+      rHinweis.hidden = false;
+      rHinweis.textContent = zusage.value === 'ja' ? S.rsvpJa : S.rsvpNein;
+      rHinweis.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      if (zusage.value === 'ja') bluetenregen();
+    });
+  }
 
   /* =========================================================
      10. Musik
@@ -651,7 +699,8 @@
     const LEER = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
     function zeige(i) {
-      const bilder = C.galerie.slice(0, 4);
+      const bilder = C.galerie.slice(0, 4).filter(b => b.datei && !b.platzhalter);
+      if (!bilder.length) return;
       stelle = (i + bilder.length) % bilder.length;
       const b = bilder[stelle];
       bild.src = mitVersion(b.datei);

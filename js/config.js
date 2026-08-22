@@ -11,7 +11,7 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '20260822115820',
+  version: '20260822121241',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
@@ -42,7 +42,7 @@ window.HOCHZEIT = {
   /* ---------- Musik ---------- */
   musik: {
     datei:  'assets/audio/musik.mp3',
-    titel:  'Instrumental, eigens erzeugt',
+    titel:  'Platzhalter - Musikwunsch der Kundin steht noch aus',
     starten: true,                 // beginnt beim Antippen des Umschlags
     lautstaerke: 0.42,
   },
@@ -58,11 +58,11 @@ window.HOCHZEIT = {
   },
 
   /* ---------- Familien (Namen sind sprachneutral) ---------- */
-  /* Namen von der gedruckten Einladung uebernommen. Die Reihenfolge dort
-     ist Bozhüyük links, Çikin rechts - passend zu "İsmail & Suna".
-     Sollte die Zuordnung umgekehrt sein, hier die beiden Zeilen tauschen. */
+  /* Namen von der gedruckten Einladung uebernommen, Zuordnung bestaetigt. */
   familien: [
-    { schluessel: 'braeutigamseite', namen: ['Dürdane und Mehmet Mustafa Bozhüyük'] },
+    { schluessel: 'braeutigamseite',
+      namen:    ['Dürdane und Mehmet Mustafa Bozhüyük'],
+      namen_tr: ['Dürdane ve Mehmet Mustafa Bozhüyük'] },
     { schluessel: 'brautseite',
       namen:    ['Hasret und der verstorbene Süleyman Çikin'],
       namen_tr: ['Hasret ve merhum Süleyman Çikin'] },
@@ -88,11 +88,14 @@ window.HOCHZEIT = {
   rsvp: { frist_iso: '2026-10-24' },
 
   /* ---------- Galerie ---------- */
+  /* Noch keine eigenen Fotos - bis dahin stehen hier Platzhalter.
+     Sobald die Bilder da sind: Dateien nach assets/img/ legen und hier
+     eintragen, der Rest laeuft von allein. */
   galerie: [
-    { datei: 'assets/img/paar1.webp', schluessel: 'g1' },
-    { datei: 'assets/img/paar2.webp', schluessel: 'g2' },
-    { datei: 'assets/img/paar3.webp', schluessel: 'g3' },
-    { datei: 'assets/img/paar4.webp', schluessel: 'g4' },
+    { platzhalter: true, schluessel: 'g1' },
+    { platzhalter: true, schluessel: 'g2' },
+    { platzhalter: true, schluessel: 'g3' },
+    { platzhalter: true, schluessel: 'g4' },
   ],
 
   /* ---------- Dresscode-Farben (Namen uebersetzt) ---------- */
@@ -123,10 +126,11 @@ window.HOCHZEIT = {
 
       kopfUeberzeile: 'Die Einladung',
       merken:         'Erinnerung hinzufügen',
-      kalenderApple:  'iPhone — Apple Kalender',
-      kalenderGoogle: 'Android — Google Kalender',
+      kalenderKnopf: 'Termin speichern',
+      kalenderFertig: 'Gespeichert',
+      kalenderNotiz: adr => 'Wir freuen uns auf euch. Alle Angaben zum Tag: ' + adr,
 
-      anredeText: 'Am ersten Tag des neuen Jahres geben wir uns das Ja-Wort. '
+      anredeText: 'Am 21. November geben wir uns das Ja-Wort. '
                 + 'Wir würden uns freuen, wenn ihr dabei seid – zur Trauung, '
                 + 'zum Essen und danach so lange, wie ihr mögt.',
       anredeGruss: 'Suna und Ismail',
@@ -156,21 +160,23 @@ window.HOCHZEIT = {
 
       ablaufTitel: 'Der Tag',
       ablauf: [
-        { titel: 'Freie Trauung',   ort: 'Orangerie im Schlosspark', notiz: 'Bitte seid 15 Minuten vorher da.' },
-        { titel: 'Sektempfang',     ort: 'Terrasse vor der Orangerie', notiz: 'Bei Regen drinnen im Foyer.' },
-        { titel: 'Abendessen',      ort: 'Festsaal' },
-        { titel: 'Eröffnungstanz',  ort: 'Festsaal' },
-        { titel: 'Torte und Feier', ort: 'Festsaal' },
-        { titel: 'Ende',            ort: '', notiz: 'Taxistand liegt direkt am Parkeingang.' },
+        /* Zeiten: Beginn und Ende von der Kundin. Die Stationen dazwischen
+           sind ein Vorschlag - bitte gegenlesen lassen. */
+        { titel: 'Empfang',         ort: 'Ceremony' },
+        { titel: 'Freie Trauung',   ort: 'Ceremony' },
+        { titel: 'Abendessen',      ort: 'Ceremony' },
+        { titel: 'Eröffnungstanz',  ort: 'Ceremony' },
+        { titel: 'Torte und Feier', ort: 'Ceremony' },
+        { titel: 'Ende',            ort: '' },
       ],
 
       ortTitel: 'Wo',
       ortName: 'Ceremony Eventlocation',
-      ortBildAlt: 'Blumenbogen vor der Orangerie, dahinter die Stuhlreihen für die Trauung',
-      ortHinweis: 'Parkplätze gibt es am Westflügel. Vom Bahnhof Benrath sind es acht Minuten zu Fuß.',
+      ortBildAlt: 'Die Ceremony Eventlocation in Bottrop',
+      ortHinweis: '',   // TODO Parken / Anfahrt, falls die Kundin etwas dazu sagen moechte
       routeGoogle: 'Route mit Google Maps',
       routeApple:  'Apple Karten',
-      kartenAlt: ort => 'Schematische Lage: ' + ort + ' im Schlosspark, Zufahrt von Norden',
+      kartenAlt: ort => 'Schematische Lage: ' + ort + ' an der Knippenburg in Bottrop',
 
       familienTitel: 'Mit uns freuen sich',
       rollen: { brautseite: 'Eltern der Braut', braeutigamseite: 'Eltern des Bräutigams', trauzeugen: 'Trauzeugen' },
@@ -204,7 +210,7 @@ window.HOCHZEIT = {
 
       rsvpTitel: 'Sagt ihr uns Bescheid?',
       rsvpHinweis: frist => 'Bitte bis zum ' + frist + '. Danach steht die Bestellung beim Caterer fest.',
-      fName: 'Euer Name', fNamePlatz: 'Ayşe und Deniz Yılmaz', fNameFehler: 'Bitte tragt euren Namen ein.',
+      fName: 'Euer Name', fNamePlatz: 'Vorname und Nachname', fNameFehler: 'Bitte tragt euren Namen ein.',
       fKommt: 'Kommt ihr?', fJa: 'Wir kommen', fNein: 'Wir können leider nicht',
       fZusageFehler: 'Bitte wählt eine der beiden Antworten.',
       fAnzahl: 'Wie viele Personen',
@@ -221,10 +227,10 @@ window.HOCHZEIT = {
 
       musikAn: 'Musik ausschalten', musikAus: 'Musik einschalten',
 
-      verantwortlich: 'Verantwortlich für den Inhalt: Suna und Ismail NACHNAME · E-MAIL',   // TODO
+      verantwortlich: 'Suna und İsmail',   // TODO Kontaktadresse ergaenzen, falls gewuenscht
       datenschutz: 'Diese Seite setzt keine Cookies und lädt weder Schriften noch Karten von fremden Servern. '
-                 + 'Der Google-Kalender-Knopf öffnet erst nach eurem Klick eine Seite von Google.',
-      demoHinweis: 'Demo-Karte von JP Webstudio, gehostet auf GitHub Pages. Paar, Termin und Bankverbindung sind erfunden.',
+                 + 'Der Termin wird auf eurem Gerät erzeugt, die Kartenknöpfe öffnen erst nach eurem Klick eine Karten-App.',
+      demoHinweis: '',
       seitentitel: namen => namen + ' — Wir heiraten',
     },
 
@@ -243,10 +249,11 @@ window.HOCHZEIT = {
 
       kopfUeberzeile: 'Davetiye',
       merken:         'Hatırlatıcı ekle',
-      kalenderApple:  'iPhone — Apple Takvim',
-      kalenderGoogle: 'Android — Google Takvim',
+      kalenderKnopf: 'Takvime ekle',
+      kalenderFertig: 'Eklendi',
+      kalenderNotiz: adr => 'Sizi aramızda görmek için sabırsızlanıyoruz. Günün tüm ayrıntıları: ' + adr,
 
-      anredeText: 'Yeni yılın ilk gününde hayatımızı birleştiriyoruz. '
+      anredeText: '21 Kasım günü hayatımızı birleştiriyoruz. '
                 + 'Bu özel günümüzde sizi de aramızda görmekten mutluluk duyarız – '
                 + 'nikâhta, yemekte ve sonrasında dilediğiniz kadar.',
       anredeGruss: 'Suna ve Ismail',
@@ -276,18 +283,18 @@ window.HOCHZEIT = {
 
       ablaufTitel: 'Günün akışı',
       ablauf: [
-        { titel: 'Nikâh töreni',            ort: 'Saray parkındaki Orangerie', notiz: 'Lütfen 15 dakika önce gelin.' },
-        { titel: 'Karşılama kokteyli',      ort: 'Orangerie terası', notiz: 'Yağmur durumunda fuayede.' },
-        { titel: 'Akşam yemeği',            ort: 'Balo salonu' },
-        { titel: 'İlk dans',                ort: 'Balo salonu' },
-        { titel: 'Pasta kesimi ve eğlence', ort: 'Balo salonu' },
-        { titel: 'Kapanış',                 ort: '', notiz: 'Taksi durağı park girişinin hemen yanında.' },
+        { titel: 'Karşılama',        ort: 'Ceremony' },
+        { titel: 'Nikâh töreni',     ort: 'Ceremony' },
+        { titel: 'Akşam yemeği',     ort: 'Ceremony' },
+        { titel: 'İlk dans',         ort: 'Ceremony' },
+        { titel: 'Pasta ve eğlence', ort: 'Ceremony' },
+        { titel: 'Kapanış',          ort: '' },
       ],
 
       ortTitel: 'Konum',
       ortName: 'Ceremony Eventlocation',
       ortBildAlt: 'Orangerie önünde çiçekli kemer, arkasında nikâh için sandalye sıraları',
-      ortHinweis: 'Otopark batı kanadındadır. Benrath tren istasyonundan yürüyerek sekiz dakika.',
+      ortHinweis: '',
       routeGoogle: 'Google Haritalar ile yol tarifi',
       routeApple:  'Apple Haritalar',
       kartenAlt: ort => 'Konum şeması: saray parkındaki ' + ort + ', kuzeyden giriş',
@@ -324,7 +331,7 @@ window.HOCHZEIT = {
 
       rsvpTitel: 'Katılım bildirimi',
       rsvpHinweis: frist => 'Lütfen ' + frist + ' tarihine kadar bildirin. Sonrasında ikram siparişi kesinleşiyor.',
-      fName: 'Adınız soyadınız', fNamePlatz: 'Ayşe ve Deniz Yılmaz', fNameFehler: 'Lütfen adınızı yazın.',
+      fName: 'Adınız soyadınız', fNamePlatz: 'Adınız ve soyadınız', fNameFehler: 'Lütfen adınızı yazın.',
       fKommt: 'Katılacak mısınız?', fJa: 'Katılıyoruz', fNein: 'Maalesef katılamıyoruz',
       fZusageFehler: 'Lütfen iki seçenekten birini işaretleyin.',
       fAnzahl: 'Kaç kişi',
@@ -341,10 +348,10 @@ window.HOCHZEIT = {
 
       musikAn: 'Müziği kapat', musikAus: 'Müziği aç',
 
-      verantwortlich: 'İçerik sorumlusu: Suna Sarıca ve Ismail Zarga · hallo@dilara-und-furkan.de',
+      verantwortlich: 'Suna ve İsmail',
       datenschutz: 'Bu sayfa çerez kullanmaz, yazı tiplerini ve haritaları başka sunuculardan yüklemez. '
-                 + 'Google Takvim düğmesi yalnızca siz dokununca bir Google sayfası açar.',
-      demoHinweis: 'JP Webstudio demo davetiyesi, GitHub Pages üzerinde. Çift, tarih ve banka bilgisi kurgudur.',
+                 + 'Takvim kaydı cihazınızda oluşturulur; harita düğmeleri yalnızca siz dokununca bir harita uygulaması açar.',
+      demoHinweis: '',
       seitentitel: namen => namen + ' — Evleniyoruz',
     },
   },
