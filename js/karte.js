@@ -282,7 +282,11 @@
       const div = el('div', 'fam-zeile rv' + sichtbar);
       div.dataset.rv = String(i + 1);
       div.appendChild(el('p', 'fam-rolle', S.rollen[gruppe.schluessel]));
-      div.appendChild(el('p', 'fam-namen', gruppe.namen.join(' · ')));
+      // Namen sind sprachneutral - ausser wo eine Formulierung uebersetzt
+      // gehoert, etwa "der verstorbene" / "merhum". Dann steht die
+      // Fassung unter namen_<sprache>.
+      const namen = gruppe['namen_' + sprache] || gruppe.namen;
+      div.appendChild(el('p', 'fam-namen', namen.join(' · ')));
       fam.appendChild(div);
     });
 

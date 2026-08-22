@@ -11,7 +11,7 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '20260822114700',
+  version: '20260822115820',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
@@ -20,8 +20,8 @@ window.HOCHZEIT = {
   /* ---------- Das Paar ---------- */
   /* Noch offen: beide Nachnamen. */
   braut:        'Suna',
-  braeutigam:   'Ismail',
-  namen:        'Ismail & Suna',
+  braeutigam:   'İsmail',
+  namen:        'İsmail & Suna',
   datumKurz:    '21.11.2026',
   datumISO:     '2026-11-21',
   /* Mit Zeitzonenversatz, sonst rechnen Countdown und Kalendereintrag in
@@ -49,17 +49,24 @@ window.HOCHZEIT = {
 
   /* ---------- Ort (sprachneutral) ---------- */
   ort: {
-    strasse: 'Benrather Schloßallee 104',
-    plz:     '40597',
-    stadt:   'Düsseldorf',
-    lat: 51.163, lon: 6.871,
+    strasse: 'An der Knippenburg 115',
+    plz:     '46238',
+    stadt:   'Bottrop',
+    /* Nur fuer die gezeichnete Lageskizze. Die Karten-Knoepfe suchen
+       ueber die Adresse, nicht ueber diese Werte. */
+    lat: 51.523, lon: 6.965,
   },
 
   /* ---------- Familien (Namen sind sprachneutral) ---------- */
+  /* Namen von der gedruckten Einladung uebernommen. Die Reihenfolge dort
+     ist Bozhüyük links, Çikin rechts - passend zu "İsmail & Suna".
+     Sollte die Zuordnung umgekehrt sein, hier die beiden Zeilen tauschen. */
   familien: [
-    { schluessel: 'brautseite',      namen: ['ELTERN DER BRAUT'] },        // TODO
-    { schluessel: 'braeutigamseite', namen: ['ELTERN DES BRAEUTIGAMS'] },  // TODO
-    { schluessel: 'trauzeugen',      namen: ['Annemaria', 'Küsat'] },      // TODO Nachnamen
+    { schluessel: 'braeutigamseite', namen: ['Dürdane und Mehmet Mustafa Bozhüyük'] },
+    { schluessel: 'brautseite',
+      namen:    ['Hasret und der verstorbene Süleyman Çikin'],
+      namen_tr: ['Hasret ve merhum Süleyman Çikin'] },
+    { schluessel: 'trauzeugen',      namen: ['Annemaria', 'Küşat'] },   // TODO Nachnamen
   ],
 
   /* ---------- Geschenke ---------- */
@@ -158,7 +165,7 @@ window.HOCHZEIT = {
       ],
 
       ortTitel: 'Wo',
-      ortName: 'Schloss Benrath, Orangerie',
+      ortName: 'Ceremony Eventlocation',
       ortBildAlt: 'Blumenbogen vor der Orangerie, dahinter die Stuhlreihen für die Trauung',
       ortHinweis: 'Parkplätze gibt es am Westflügel. Vom Bahnhof Benrath sind es acht Minuten zu Fuß.',
       routeGoogle: 'Route mit Google Maps',
@@ -278,7 +285,7 @@ window.HOCHZEIT = {
       ],
 
       ortTitel: 'Konum',
-      ortName: 'Benrath Sarayı, Orangerie',
+      ortName: 'Ceremony Eventlocation',
       ortBildAlt: 'Orangerie önünde çiçekli kemer, arkasında nikâh için sandalye sıraları',
       ortHinweis: 'Otopark batı kanadındadır. Benrath tren istasyonundan yürüyerek sekiz dakika.',
       routeGoogle: 'Google Haritalar ile yol tarifi',
