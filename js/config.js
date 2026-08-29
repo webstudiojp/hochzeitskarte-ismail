@@ -11,7 +11,7 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '202608292210',
+  version: '202608292218',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
@@ -37,14 +37,6 @@ window.HOCHZEIT = {
     herzZeigen:   true,
     tempo:        1.0,
     ueberspringbar: true,
-  },
-
-  /* ---------- Musik ---------- */
-  musik: {
-    datei:  'assets/audio/musik.mp3',
-    titel:  'Platzhalter - Musikwunsch der Kundin steht noch aus',
-    starten: true,                 // beginnt beim Antippen des Umschlags
-    lautstaerke: 0.42,
   },
 
   /* ---------- Ort (sprachneutral) ---------- */
@@ -222,7 +214,6 @@ window.HOCHZEIT = {
       rsvpNein: 'Schade. Die Eingaben sind vollständig – in dieser Vorschau wird noch nichts versendet.',
 
 
-      musikAn: 'Musik ausschalten', musikAus: 'Musik einschalten',
 
       verantwortlich: 'Suna und İsmail',   // TODO Kontaktadresse ergaenzen, falls gewuenscht
       datenschutz: 'Diese Seite setzt keine Cookies und lädt weder Schriften noch Karten von fremden Servern. '
@@ -343,7 +334,6 @@ window.HOCHZEIT = {
       rsvpNein: 'Üzüldük. Bilgiler eksiksiz – bu önizlemede henüz gönderim yapılmıyor.',
 
 
-      musikAn: 'Müziği kapat', musikAus: 'Müziği aç',
 
       verantwortlich: 'Suna ve İsmail',
       datenschutz: 'Bu sayfa çerez kullanmaz, yazı tiplerini ve haritaları başka sunuculardan yüklemez. '

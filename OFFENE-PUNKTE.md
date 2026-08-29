@@ -20,8 +20,7 @@ Stand der Karte und was noch von der Kundin gebraucht wird.
 2. ~~Fotos~~ — **erledigt**: fünf eigene Aufnahmen sind drin. Weitere
    (z. B. vom Standesamt) lassen sich jederzeit in `js/config.js` unter
    `galerie` ergänzen.
-3. **Musik** — läuft noch mit dem Ney-Solo der Vorlage. Sobald die Kundin
-   eine Richtung nennt, tausche ich sie (siehe `assets/audio/HIER-MUSIK-ABLEGEN.txt`).
+3. ~~Musik~~ — auf Wunsch komplett entfernt (Audio, Knopf, Datei).
 4. ~~Ablauf~~ — der Abschnitt "Der Tag" ist auf Wunsch entfernt.
 5. **Hintergrund der ersten Seite** — die Kundin wollte einen anderen.
 6. **Parken / Anfahrt** — Feld ist leer, falls sie etwas dazu sagen möchte.
