@@ -17,15 +17,12 @@ Stand der Karte und was noch von der Kundin gebraucht wird.
 ## Offen — hier stehen noch Platzhalter
 
 1. **Nachname von Küşat** — Annemaria Amedahevi steht vollständig, bei Küşat fehlt er noch.
-2. **Fotos** — die Galerie zeigt vier Platzhalter-Kacheln. Sobald die Bilder
-   da sind: nach `assets/img/` legen und in `js/config.js` unter `galerie`
-   eintragen (`{ datei: 'assets/img/…', schluessel: 'g1' }`).
-   Standesamt ist am 12.09., die Bilder passen problemlos nachträglich rein.
+2. ~~Fotos~~ — **erledigt**: fünf eigene Aufnahmen sind drin. Weitere
+   (z. B. vom Standesamt) lassen sich jederzeit in `js/config.js` unter
+   `galerie` ergänzen.
 3. **Musik** — läuft noch mit dem Ney-Solo der Vorlage. Sobald die Kundin
    eine Richtung nennt, tausche ich sie (siehe `assets/audio/HIER-MUSIK-ABLEGEN.txt`).
-4. **Ablauf zwischen 16 und 24 Uhr** — Beginn und Ende sind von der Kundin,
-   die Stationen dazwischen (Empfang, Trauung, Essen, Tanz, Torte) sind ein
-   Vorschlag. Bitte gegenlesen lassen.
+4. ~~Ablauf~~ — der Abschnitt "Der Tag" ist auf Wunsch entfernt.
 5. **Hintergrund der ersten Seite** — die Kundin wollte einen anderen.
 6. **Parken / Anfahrt** — Feld ist leer, falls sie etwas dazu sagen möchte.
 

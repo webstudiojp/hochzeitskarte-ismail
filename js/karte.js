@@ -224,22 +224,25 @@
     setzen('cd-l-minuten', S.cdMinuten); setzen('cd-l-sekunden', S.cdSekunden);
     setzen('cd-fuss', S.countdownFuss(S.datumLang.replace(/^\w+,\s*/, '')));
 
-    // Ablauf
-    setzen('ablauf-titel', S.ablaufTitel);
-    const zl = $('zeitleiste');
-    zl.innerHTML = '';
-    S.ablauf.forEach((p, i) => {
-      const li = el('li', 'zl-punkt rv' + sichtbar);
-      li.dataset.rv = String(i + 1);
-      const kopf = el('div', 'zl-kopf');
-      kopf.appendChild(symbol(C.symbole[i], 'zl-sym'));
-      li.appendChild(kopf);
-      li.appendChild(el('span', 'zl-zeit', C.zeiten[i]));
-      li.appendChild(el('h3', 'zl-titel', p.titel));
-      if (p.ort)   li.appendChild(el('p', 'zl-ort', p.ort));
-      if (p.notiz) li.appendChild(el('p', 'zl-notiz', p.notiz));
-      zl.appendChild(li);
-    });
+    // Ablauf - dieses Paar zeigt keine Zeitleiste. Der Aufbau haelt
+    // das aus, falls sie zurueckkommt.
+    if ($('zeitleiste')) {
+      setzen('ablauf-titel', S.ablaufTitel);
+      const zl = $('zeitleiste');
+      zl.innerHTML = '';
+      S.ablauf.forEach((p, i) => {
+        const li = el('li', 'zl-punkt rv' + sichtbar);
+        li.dataset.rv = String(i + 1);
+        const kopf = el('div', 'zl-kopf');
+        kopf.appendChild(symbol(C.symbole[i], 'zl-sym'));
+        li.appendChild(kopf);
+        li.appendChild(el('span', 'zl-zeit', C.zeiten[i]));
+        li.appendChild(el('h3', 'zl-titel', p.titel));
+        if (p.ort)   li.appendChild(el('p', 'zl-ort', p.ort));
+        if (p.notiz) li.appendChild(el('p', 'zl-notiz', p.notiz));
+        zl.appendChild(li);
+      });
+    }
 
     // Gut zu wissen - ebenfalls entfernt, siehe oben
     setzen('wissen-titel', S.wissenTitel);
@@ -311,7 +314,7 @@
     setzen('galerie-titel', S.galerieTitel);
     const gal = $('gal-band');
     gal.innerHTML = '';
-    C.galerie.slice(0, 4).forEach((b, i) => {
+    C.galerie.slice(0, 5).forEach((b, i) => {
       const fig = el('figure', 'gal-bild rv' + sichtbar);
       fig.dataset.rv = String(i + 1);
       if (b.platzhalter || !b.datei) {
@@ -699,7 +702,7 @@
     const LEER = 'data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==';
 
     function zeige(i) {
-      const bilder = C.galerie.slice(0, 4).filter(b => b.datei && !b.platzhalter);
+      const bilder = C.galerie.slice(0, 5).filter(b => b.datei && !b.platzhalter);
       if (!bilder.length) return;
       stelle = (i + bilder.length) % bilder.length;
       const b = bilder[stelle];

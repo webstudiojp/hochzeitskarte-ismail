@@ -11,7 +11,7 @@ window.HOCHZEIT = {
 
   // Wird von bin/veroeffentlichen.sh gesetzt und an alle Bilder gehaengt,
   // damit Browser nach einer Aenderung nicht die alte Fassung zeigen.
-  version: '202608221246',
+  version: '202608292210',
 
   /* ---------- Sprachen ---------- */
   standardsprache: 'de',
@@ -88,14 +88,12 @@ window.HOCHZEIT = {
   rsvp: { frist_iso: '2026-10-24' },
 
   /* ---------- Galerie ---------- */
-  /* Noch keine eigenen Fotos - bis dahin stehen hier Platzhalter.
-     Sobald die Bilder da sind: Dateien nach assets/img/ legen und hier
-     eintragen, der Rest laeuft von allein. */
   galerie: [
-    { platzhalter: true, schluessel: 'g1' },
-    { platzhalter: true, schluessel: 'g2' },
-    { platzhalter: true, schluessel: 'g3' },
-    { platzhalter: true, schluessel: 'g4' },
+    { datei: 'assets/img/paar1.webp', schluessel: 'g1' },
+    { datei: 'assets/img/paar2.webp', schluessel: 'g2' },
+    { datei: 'assets/img/paar3.webp', schluessel: 'g3' },
+    { datei: 'assets/img/paar4.webp', schluessel: 'g4' },
+    { datei: 'assets/img/paar5.webp', schluessel: 'g5' },
   ],
 
   /* ---------- Dresscode-Farben (Namen uebersetzt) ---------- */
@@ -187,10 +185,11 @@ window.HOCHZEIT = {
 
       galerieTitel: 'Wir zwei',
       bildtexte: {
-        g1: 'Suna und Ismail zu Hause, sie hält seine Wange',
-        g2: 'Die beiden abends unter Palmen und Lichterketten',
-        g3: 'Ismail und Suna am Strand bei Sonnenuntergang',
-        g4: 'Suna lehnt an Ismails Schulter auf dem Sofa',
+        g1: 'İsmail und Suna bei ihrer Verlobung, im Hintergrund der Schriftzug Sözümüz Söz',
+        g2: 'Die beiden nebeneinander in der Bahn',
+        g3: 'İsmail und Suna im Café',
+        g4: 'Die beiden Arm in Arm zu Hause',
+        g5: 'İsmail und Suna unterwegs in der Stadt',
       },
 
       albumTitel: 'Euer Blick auf den Tag',
@@ -307,10 +306,11 @@ window.HOCHZEIT = {
 
       galerieTitel: 'Biz ikimiz',
       bildtexte: {
-        g1: 'Suna ve Ismail evde, Suna elini yanağına koymuş',
-        g2: 'İkisi akşam, palmiyeler ve ışıklar altında',
-        g3: 'Ismail ve Suna gün batımında sahilde',
-        g4: 'Suna başını Ismail’ın omzuna yaslamış',
+        g1: 'İsmail ve Suna nişanlarında, arkalarında Sözümüz Söz yazısı',
+        g2: 'İkisi metroda yan yana',
+        g3: 'İsmail ve Suna kafede',
+        g4: 'İkisi evde kol kola',
+        g5: 'İsmail ve Suna şehirde',
       },
 
       albumTitel: 'Anı albümü',

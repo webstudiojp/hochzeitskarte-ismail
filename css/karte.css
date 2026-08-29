@@ -262,12 +262,14 @@ html{scrollbar-color:var(--linie) var(--leinen)}
   --g1:#d9c7b0; --g2:#c2b295;
   width:100%;margin:0;overflow:hidden;position:relative;
 }
-/* Vier Aufnahmen im Querformat - die Seitenverhaeltnisse bleiben nah
-   am Original, damit nichts Wichtiges weggeschnitten wird. */
-.gal-bild:nth-child(1){grid-column:span 2;aspect-ratio:3/2}
-.gal-bild:nth-child(2){grid-column:span 1;aspect-ratio:4/5}
-.gal-bild:nth-child(3){grid-column:span 1;aspect-ratio:4/5}
-.gal-bild:nth-child(4){grid-column:span 2;aspect-ratio:3/2}
+/* Fuenf Aufnahmen, alle im Hochformat. Die Kacheln folgen dem
+   Seitenverhaeltnis der Bilder - querformatige Kacheln wuerden bei
+   Hochformat-Fotos die Koepfe abschneiden. */
+.gal-bild:nth-child(1){grid-column:span 2;aspect-ratio:4/5}
+.gal-bild:nth-child(2){grid-column:span 1;aspect-ratio:3/4}
+.gal-bild:nth-child(3){grid-column:span 1;aspect-ratio:3/4}
+.gal-bild:nth-child(4){grid-column:span 1;aspect-ratio:3/4}
+.gal-bild:nth-child(5){grid-column:span 1;aspect-ratio:3/4}
 /* Absolut gesetzt, sonst sprengt der Text die Kachel und aspect-ratio faellt aus */
 .gal-platzhalter{
   position:absolute;inset:0;margin:0;
@@ -392,10 +394,11 @@ html{scrollbar-color:var(--linie) var(--leinen)}
 
 @media (min-width:640px){
   .gal-band{grid-template-columns:repeat(6,1fr);gap:14px}
-  .gal-bild:nth-child(1){grid-column:span 4;aspect-ratio:3/2}
-  .gal-bild:nth-child(2){grid-column:span 2;aspect-ratio:4/5}
-  .gal-bild:nth-child(3){grid-column:span 3;aspect-ratio:4/3}
-  .gal-bild:nth-child(4){grid-column:span 3;aspect-ratio:4/3}
+  .gal-bild:nth-child(1){grid-column:span 3;aspect-ratio:4/5}
+  .gal-bild:nth-child(2){grid-column:span 3;aspect-ratio:4/5}
+  .gal-bild:nth-child(3){grid-column:span 2;aspect-ratio:3/4}
+  .gal-bild:nth-child(4){grid-column:span 2;aspect-ratio:3/4}
+  .gal-bild:nth-child(5){grid-column:span 2;aspect-ratio:3/4}
   .knopf-paar .knopf{flex:none}
 }
 
