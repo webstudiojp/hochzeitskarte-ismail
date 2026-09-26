@@ -1,4 +1,2 @@
-# Diese Einladung enthaelt personenbezogene Daten und gehoert nicht in
-# Suchmaschinen. Ueber den Link erreichbar, ueber Google nicht.
 User-agent: *
 Disallow: /
